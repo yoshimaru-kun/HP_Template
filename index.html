@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自営業者向けウェブサイトテンプレート</title>
+    <style>
+        /* 基本設定 */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f4f4f4;
+            --text-color: #333;
+            --light-gray: #e9e9e9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        /* ヘッダー */
+        .main-header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* ハンバーガーメニュー */
+        .burger-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* ヒーローセクション */
+        #hero {
+            background: url(images/テンプレートHPヒーローセクション用.png) no-repeat center 25%/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #004494;
+        }
+
+        /* セクション共通スタイル */
+        #about, #services, #portfolio, #contact {
+            background-color: var(--white);
+        }
+        
+        #services, #contact {
+            background-color: var(--secondary-color);
+        }
+
+        /* サービスセクション */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* 実績紹介セクション */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* お問い合わせ */
+        .contact-info {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* フッター */
+        .main-footer {
+            background: #333;
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            #hero h1 { font-size: 2.5rem; }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            
+            .main-nav.active {
+                display: block;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0;
+            }
+            
+            .main-nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .main-nav a {
+                display: block;
+                padding: 15px;
+            }
+
+            .burger-menu {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">あなたの事業名</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">事業概要</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#portfolio">実績</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="burger-menu">
+                &#9776;
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>革新的なサービスで未来を創造する</h1>
+            <p>あなたのビジネスの成功を全力でサポートします。</p>
+            <a href="#contact" class="btn">今すぐ相談する</a>
+        </section>
+
+        <section id="about" class="container">
+            <h2>事業概要</h2>
+            <p>ここにあなたの自己紹介や事業の紹介を記述します。どのような経歴や情熱を持ってこの事業を始めたのか、顧客にどのような価値を提供できるのかなどを分かりやすく伝えましょう。信頼性を高めるために、具体的な経験やスキルに触れるのがおすすめです。</p>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2>サービス内容</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h3>サービス 1</h3>
+                        <p>提供するサービスの概要をここに記述します。顧客がメリットを感じられるような具体的な説明を心がけましょう。</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>サービス 2</h3>
+                        <p>提供するサービスの概要をここに記述します。顧客がメリットを感じられるような具体的な説明を心がけましょう。</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>サービス 3</h3>
+                        <p>提供するサービスの概要をここに記述します。顧客がメリットを感じられるような具体的な説明を心がけましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="container">
+            <h2>実績紹介</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/0056b3/fff?text=実績+1" alt="実績1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/333/fff?text=実績+2" alt="実績2">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/0056b3/fff?text=実績+3" alt="実績3">
+                </div>
+                 <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/333/fff?text=実績+4" alt="実績4">
+                </div>
+                 <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/0056b3/fff?text=実績+5" alt="実績5">
+                </div>
+                 <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/333/fff?text=実績+6" alt="実績6">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>お問い合わせ</h2>
+                <div class="contact-info">
+                    <p>ご依頼やご相談は、以下の連絡先よりお気軽にお問い合わせください。</p>
+                    <p><strong>メール:</strong> <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+                    <p><strong>電話番号:</strong> <a href="tel:090-1234-5678">090-1234-5678</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 あなたの事業名. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const burgerMenu = document.querySelector('.burger-menu');
+        const mainNav = document.querySelector('.main-nav');
+
+        burgerMenu.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
